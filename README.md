@@ -1,16 +1,16 @@
-# React + Vite
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Joshua Most Photography Website
 
-Currently, two official plugins are available:
+This repository contains the **source code** for my personal photography website, built with **React, Vite, and Node.js/Express**. The site includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Home, About, Contact, and Dev pages  
+- Dark mode toggle  
+- Dev journal powered by Markdown files  
+- Contact form and newsletter signup via SendGrid  
 
-## React Compiler
+## License
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> **Note:** Only the source code is open-sourced. Images, personal names, emails, and other private data are **not included** and are not covered by the license.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This code is open-source under the **MIT License**.
