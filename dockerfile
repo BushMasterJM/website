@@ -32,8 +32,8 @@ COPY package.json package-lock.json ./
 # Install production dependencies only
 RUN npm install --production
 
-# Copy built React app from build stage (Vite builds to 'dist' by default)
-COPY --from=build /app/dist ./dist
+# Copy built React app from build stage (Vite builds to 'build' directory based on your config)
+COPY --from=build /app/build ./build
 
 # Copy markdown posts directory
 COPY devPostsMd ./devPostsMd
