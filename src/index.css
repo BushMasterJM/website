@@ -1,13 +1,23 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Image starts invisible */
+.animate-fade-in {
+  opacity: 0; /* <-- important */
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Text starts invisible */
+.animate-fade-in-delay {
+  opacity: 0; /* <-- important */
+  animation: fadeIn 0.8s ease-out 0.1s forwards; /* optional tiny stagger */
+}
+
+/* globals.css */
+html {
+  scroll-behavior: smooth;
 }
