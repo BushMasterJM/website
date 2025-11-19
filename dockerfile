@@ -9,12 +9,16 @@ COPY package.json package-lock.json ./
 # Install dependencies
 RUN npm install
 
-# Copy source files and markdown posts
+# Copy all necessary files for Vite build
+COPY index.html ./
+COPY vite.config.js ./
+COPY postcss.config.js ./
+COPY tailwind.config.js ./
 COPY src ./src
 COPY public ./public
 COPY devPostsMd ./devPostsMd
 
-# Build the React application
+# Build the React application with Vite
 RUN npm run build
 
 # Production stage
@@ -28,8 +32,8 @@ COPY package.json package-lock.json ./
 # Install production dependencies only
 RUN npm install --production
 
-# Copy built React app from build stage
-COPY --from=build /app/build ./build
+# Copy built React app from build stage (Vite builds to 'dist' by default)
+COPY --from=build /app/dist ./dist
 
 # Copy markdown posts directory
 COPY devPostsMd ./devPostsMd

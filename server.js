@@ -27,7 +27,8 @@ console.log('Exists?', fs.existsSync(POSTS_DIR));
 console.log('Files:', fs.existsSync(POSTS_DIR) ? fs.readdirSync(POSTS_DIR) : 'No folder');
 
 // Serve frontend static files in production
-const buildPath = path.join(__dirname, 'build'); // or 'dist'
+// Vite builds to 'dist' folder by default
+const buildPath = path.join(__dirname, 'dist');
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(buildPath));
 }
