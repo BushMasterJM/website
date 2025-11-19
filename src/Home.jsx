@@ -156,6 +156,13 @@ const Home = () => {
             >
               Contact
             </Link>
+                        <Link 
+              to="/dev"
+              onClick={() => setMenuOpen(false)}
+              className="block text-sm uppercase tracking-wider transition-colors hover:text-zinc-900"
+            >
+              Dev
+            </Link>
             
             {/* Mobile Dark Mode Toggle */}
             <button

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Instagram, Mail, Moon, Sun, Send } from 'lucide-react';
+import { Instagram, Mail, Moon, Sun, Send, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useDarkMode } from './DarkModeContext';
 
@@ -13,6 +13,7 @@ const Contact = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   const [scrolled, setScrolled] = useState(false);
   const [animate, setAnimate] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -132,7 +133,7 @@ const Contact = () => {
                 </p>
               </Link>
 
-              {/* Navigation */}
+              {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center space-x-8 ml-auto">
                 <Link to="/" className="text-sm uppercase hover:text-zinc-900">Home</Link>
                 <Link to="/about" className="text-sm uppercase hover:text-zinc-900">About</Link>
@@ -143,15 +144,47 @@ const Contact = () => {
                   onClick={() => setDarkMode(!darkMode)}
                   className="p-2 rounded-lg transition-colors hover:bg-zinc-900"
                 >
-                  {darkMode ? (
-                    <Sun className="w-5 h-5" />
-                  ) : (
-                    <Moon className="w-5 h-5" />
-                  )}
+                  {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </button>
               </nav>
 
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden p-2 rounded-lg transition-colors ml-auto hover:bg-zinc-900"
+              >
+                {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ${
+              menuOpen ? 'max-h-80 border-t' : 'max-h-0'
+            } ${darkMode ? 'bg-black border-gray-900' : 'bg-white border-gray-900'}`}
+          >
+            <nav className="px-4 py-6 space-y-4">
+              <Link to="/" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Home
+              </Link>
+              <Link to="/about" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                About
+              </Link>
+              <Link to="/contact" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Contact
+              </Link>
+              <Link to="/dev" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Dev
+              </Link>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="flex items-center space-x-2 text-sm uppercase tracking-wider w-full hover:text-zinc-900"
+              >
+                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
+            </nav>
           </div>
         </header>
 
@@ -231,7 +264,6 @@ const Contact = () => {
 
               {/* Contact Info + Newsletter */}
               <div className={`space-y-8 ${animate ? 'animate-fade-in-delay' : ''}`}>
-
                 <div>
                   <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
                   <p

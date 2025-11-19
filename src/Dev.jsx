@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Moon, Sun } from 'lucide-react';
+import { Instagram, Moon, Sun, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useDarkMode } from './DarkModeContext';
 import ReactMarkdown from 'react-markdown';
@@ -8,6 +8,7 @@ import rehypeSanitize from 'rehype-sanitize';
 const Dev = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +38,7 @@ const Dev = () => {
         backgroundAttachment: 'fixed',
       }}
     >
-      {/* Overlay so image stays the same in light/dark */}
+      {/* Overlay so image stays consistent in light/dark */}
       <div className={`${darkMode ? 'bg-black/60' : 'bg-white/30'} absolute inset-0 backdrop-blur-sm`} />
 
       <div className="relative z-10">
@@ -62,7 +63,8 @@ const Dev = () => {
                 </p>
               </Link>
 
-              <nav className="flex items-center space-x-8 ml-auto">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-8 ml-auto">
                 <Link to="/" className="text-sm uppercase tracking-wider hover:text-zinc-900">Home</Link>
                 <Link to="/about" className="text-sm uppercase tracking-wider hover:text-zinc-900">About</Link>
                 <Link to="/contact" className="text-sm uppercase tracking-wider hover:text-zinc-900">Contact</Link>
@@ -71,7 +73,44 @@ const Dev = () => {
                   {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </button>
               </nav>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden p-2 rounded-lg transition-colors ml-auto hover:bg-zinc-900"
+              >
+                {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ${
+              menuOpen ? 'max-h-80 border-t' : 'max-h-0'
+            } ${darkMode ? 'bg-black border-gray-900' : 'bg-white border-gray-900'}`}
+          >
+            <nav className="px-4 py-6 space-y-4">
+              <Link to="/" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Home
+              </Link>
+              <Link to="/about" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                About
+              </Link>
+              <Link to="/contact" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Contact
+              </Link>
+              <Link to="/dev" onClick={() => setMenuOpen(false)} className="block text-sm uppercase tracking-wider hover:text-zinc-900">
+                Dev
+              </Link>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="flex items-center space-x-2 text-sm uppercase tracking-wider w-full hover:text-zinc-900"
+              >
+                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
+            </nav>
           </div>
         </header>
 
@@ -79,10 +118,8 @@ const Dev = () => {
         <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
           <h1 className="text-5xl font-bold text-center mb-12 animate-fade-in">Dev Journal</h1>
 
-          {/* Loading State */}
           {loading && <p className="text-center text-lg text-gray-400">Loading posts...</p>}
 
-          {/* Posts */}
           {!loading && posts.map(post => (
             <div
               key={post.id}
