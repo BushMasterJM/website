@@ -1,3 +1,4 @@
+// run with node imageopt.js
 // imageopt.js
 import sharp from 'sharp';
 import fs from 'fs';
@@ -8,7 +9,7 @@ import * as glob from 'glob';
 const SOURCE_DIR = './public/jpg';
 const OUTPUT_DIR = './public/images';
 const MAX_WIDTH = 1920;
-const QUALITY = 80;
+const QUALITY = 60;
 
 // Ensure output folder exists
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
