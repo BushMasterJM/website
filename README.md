@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 # Joshua Most Photography Website
 
@@ -13,4 +13,4 @@ This repository contains the **source code** for my personal photography website
 
 > **Note:** Only the source code is open-sourced. Images, personal names, emails, and other private data are **not included** and are not covered by the license.
 
-This code is open-source under the **MIT License**.
+This code is open-source under the **Apache License 2.0**.
