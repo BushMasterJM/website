@@ -84,7 +84,7 @@ const Contact = () => {
         darkMode ? 'text-white' : 'text-black'
       }`}
       style={{
-        backgroundImage: `url(/images/contact.jpg)`,
+        backgroundImage: `url(/images/contact.webp)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

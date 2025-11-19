@@ -31,7 +31,7 @@ const Dev = () => {
     <div
       className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'text-white' : 'text-black'}`}
       style={{
-        backgroundImage: `url(/images/dev.jpg)`,
+        backgroundImage: `url(/images/dev.webp)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

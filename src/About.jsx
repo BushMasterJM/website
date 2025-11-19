@@ -19,7 +19,7 @@ const About = () => {
         darkMode ? 'text-white' : 'text-black'
       }`}
       style={{
-        backgroundImage: `url(/images/about.jpg)`,
+        backgroundImage: `url(/images/about.webp)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -91,7 +91,7 @@ const About = () => {
               {/* Image */}
               <div className="order-2 lg:order-1 max-w-md mx-auto animate-fade-in">
                 <img 
-                  src={`/images/profile.jpg`}
+                  src={`/images/profile.webp`}
                   alt="Joshua Most"
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
