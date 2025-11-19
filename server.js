@@ -14,7 +14,7 @@ dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5555;
 
 // ES modules path fix
 const __filename = fileURLToPath(import.meta.url);
