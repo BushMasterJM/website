@@ -1,22 +1,47 @@
-# ===== FRONTEND BUILD =====
-FROM node:20 AS frontend-build
+# Build stage
+FROM node:20 AS build
+
 WORKDIR /app
-COPY frontend/package.json frontend/package-lock.json ./
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
-COPY frontend/ .
+
+# Copy source files and markdown posts
+COPY src ./src
+COPY public ./public
+COPY devPostsMd ./devPostsMd
+
+# Build the React application
 RUN npm run build
 
-# ===== BACKEND =====
-FROM node:20 AS backend
+# Production stage
+FROM node:20-slim
+
 WORKDIR /app
 
-COPY backend/package.json backend/package-lock.json ./
-RUN npm install
+# Copy package files
+COPY package.json package-lock.json ./
 
-COPY backend/ .
+# Install production dependencies only
+RUN npm install --production
 
-# Copy frontend build → backend/public
-COPY --from=frontend-build /app/dist ./public
+# Copy built React app from build stage
+COPY --from=build /app/build ./build
 
+# Copy markdown posts directory
+COPY devPostsMd ./devPostsMd
+
+# Copy server file
+COPY server.js ./
+
+# Expose port
 EXPOSE 5555
+
+# Set environment to production
+ENV NODE_ENV=production
+
+# Start the server
 CMD ["node", "server.js"]
